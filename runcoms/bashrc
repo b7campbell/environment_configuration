@@ -1,0 +1,73 @@
+#!/bin/bash -e
+
+##
+## bashrc: configure.sh executes when configuring interactive bash shell
+##
+
+#  Environment  {{{
+
+  LOCAL_ENV_PATH="$ENV_PATH/bash"
+
+  . "$LOCAL_ENV_PATH/shopt.sh"
+  . "$LOCAL_ENV_PATH/set.sh"
+
+  FCEDIT=vi
+  FIGNORE=.o:~:.swp
+  GLOBIGNORE=*.swp
+  PROMPT_COMMAND=
+  PROMPT_DIRTRIM=0
+  TMOUT=0
+  # unmodified: BASH_ENV CDPATH PS1 PS2
+
+  PAGER=less
+  TIMEFORMAT=$'\nreal %3R\tuser %3U\tsys %3S\tpcpu %P\n'
+
+# }}}
+
+# Bash History {{{
+
+  # duplicate lines excluded from history. See bash(1) for more options
+  # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+  HISTCONTROL=ignoredups
+  HISTFILE="$ENV_PATH/tmp/bash-history"
+  HISTIGNORE='cd *:l:ls:ll:la:gst:cdl *'
+  HISTTIMEFORMAT="[%m/%d] [%T]   "
+
+  HISTSIZE=500
+  HISTFILESIZE=1000
+
+# }}}
+
+#  Alias/Function Setup {{{
+
+  . "$LOCAL_ENV_PATH/functions.sh"
+  . "$LOCAL_ENV_PATH/aliases.sh"
+
+  os-conditional-config() {
+    local include_file="${1}"
+    local  system_name=$( uname | tr '[:upper:]' '[:lower:]')
+
+    if [ -s "$LOCAL_ENV_PATH/${include_file}-${system_name}.sh" ]; then
+      . "$LOCAL_ENV_PATH/${include_file}-${system_name}.sh"
+    fi
+  }
+
+  os-conditional-config 'functions'
+  os-conditional-config 'aliases'
+  os-conditional-config 'config-for'
+
+  unset -f os-conditional-config
+# }}}
+
+##
+## Specific Config
+##
+
+#  less environment variables {{{
+  EDITOR=vim
+  LESS=
+  LESSCHARSET='latin1'
+  LESSHISTFILE="-"
+  LESSHISTSIZE=0
+# }}}
+

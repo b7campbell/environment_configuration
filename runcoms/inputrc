@@ -1,0 +1,109 @@
+
+# This file controls the behaviour of line input editing for
+# programs that use the GNU Readline library.  Existing
+# programs include FTP, Bash, and GDB.
+#
+# You can re-read the inputrc file with C-x C-r.
+# Lines beginning with '#' are comments.
+#
+# First, include any system-wide bindings and variable
+# assignments from /etc/Inputrc
+$include /etc/Inputrc
+
+##
+## Config
+##
+
+set bind-tty-special-chars            on
+set colored-stats                     on
+set completion-ignore-case            on
+set completion-map-case               on
+# does not strip 8th bit of ascii characters, allowing for chars 127-255
+set convert-meta                      off
+set disable-completion                off
+set echo-control-characters           on
+set enable-meta-key                   on
+
+# controls application keypad
+set enable-keypad                     off
+
+set expand-tilde                      off
+
+# controls the placement of cursor when accessing history
+set history-preserve-point            off
+
+set horizontal-scroll-mode            off
+
+# controls reading of metachars on command line
+set input-meta                        on
+
+set mark-directories                  on
+set mark-modified-lines               on
+set mark-symlinked-directories        on
+set match-hidden-files                on
+set menu-complete-display-prefix      off
+
+# enables display of metachars on command line
+set output-meta                       on
+
+set page-completions                  on
+set print-completions-horizontally    off
+set revert-all-at-newline             on
+set show-all-if-ambiguous             on
+set show-all-if-unmodified            on
+set show-mode-in-prompt               off
+set skip-completed-text               on
+set visible-stats                     on
+
+set bell-style                        visible
+set comment-begin                     #
+set completion-display-width          -1
+set completion-prefix-display-length  2
+set completion-query-items            75
+set editing-mode                      emacs
+set keymap                            emacs
+
+# To be Left Unchanged: history-size, isearch-terminators, keyseq-timeout
+
+##
+## Mappings
+##
+
+$if mode=emacs
+
+  TAB: complete
+
+  "\C-l":     clear-screen
+  "\C-xl":    redraw-current-line
+
+  # http://stackoverflow.com/questions/29138548/binding-meta-in-inputrc-has-no-effect-macosx
+  "\eh":      backward-kill-word
+  "\C-v":     quoted-insert
+
+  # overwritting history traversal
+  "\C-o":     next-history
+  "\C-p":     previous-history
+
+  "\eo":      non-incremental-forward-search-history
+
+  "\C-x\C-d": dump-macros
+
+  "\C-u":     "\C-a\C-k" kill-whole-line
+
+  Esc-.:      yank-last-arg
+
+  ##
+  ## Custom Functions
+  ##
+
+  # Prepare to quote a word
+  "\C-x\"": "\"\"\C-b"
+  "\C-x\'": "\'\'\C-b"
+
+  # Quote the current or previous word
+  "\C-xq": "\eb\"\ef\""
+
+  # edit the path
+  "\C-xp": "PATH=${PATH}\e\C-e\C-a\ef\C-f"
+$endif
+

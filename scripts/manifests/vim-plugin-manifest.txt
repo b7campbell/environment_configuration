@@ -1,0 +1,10 @@
+powerline   fonts
+morhetz     gruvbox
+itchyny     lightline.vim
+flazz       vim-colorschemes
+tpope       vim-commentary
+tpope       vim-dispatch
+tpope       vim-fugitive
+takac       vim-hardtime
+vim-ruby    vim-ruby
+tpope       vim-surround

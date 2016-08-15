@@ -1,0 +1,4 @@
+vim/backupfiles/*
+tmp/
+*.swp
+scripts/terminal-colors-solarized/*

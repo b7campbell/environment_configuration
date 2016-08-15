@@ -1,0 +1,54 @@
+
+" Note: path variable exported by .bashrc
+source $ENV_PATH/vim/vim-configuration-files/bootstrap.vim
+set fileformats=unix,dos
+set fileformat=unix
+
+" =========================
+" 1. Source Other Vimfiles
+" =========================
+
+let s:fileformat = &fileformat
+" {{{
+call SourceConfigFiles(
+      \  'constants',
+      \  'functions',
+      \  'options',
+      \  'mappings'
+      \ )
+" }}}
+if s:fileformat != &fileformat
+  echom 'Warning: File Format Changed in Native Configuration'
+endif
+
+" =============================
+" 2. Pathogen Plugin Management
+" =============================
+
+" pathogen#interpose calls and global variables {{{
+filetype plugin indent off
+
+if &filetype != ''
+  call ConfigureiTermVim(
+        \   'EnablePlugin("vim-hardtime")',
+        \   'SourcePluginConfigFile("hardtime")'
+        \ )
+endif
+
+call ConfigureiTermVim(
+      \   'EnablePlugin("fonts")',
+      \   'EnablePlugin("lightline.vim")',
+      \   'EnablePlugin("vim-fugitive")',
+      \   'SourcePluginConfigFile("lightline")'
+      \ )
+
+call EnablePlugin('vim-surround')    " https://github.com/tpope/vim-surround
+call EnablePlugin('vim-commentary')  " https://github.com/tpope/vim-commentary
+" NOTE: vim-dispatch (https://github.com/tpope/vim-dispatch) disabled
+call EnablePlugin('gruvbox')
+call SourcePluginConfigFile( 'gruvbox' )
+
+filetype plugin indent on
+
+" }}}
+
