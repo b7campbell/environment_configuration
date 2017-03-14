@@ -43,13 +43,18 @@ newline() {
 }
 
 concatenate-ps1() {
-  local add_on="${1}"
-  local color="${2:-${NONE}}"
-  local prefix_flag="${3}"
+  local prefix_flag="${1}"
+  local add_on="${2}"
+  local color="${3:-${NONE}}"
+
+  if [ "${prefix_flag}" != '--no-prefix' ]; then
+    add_on="${1}"
+    color="${2:-${NONE}}"
+  fi
 
   local DELIMITER_CHARACTER='|'
 
-  if [ -z "${prefix_flag}" -o "${prefix_flag}" != '--no-prefix' ]; then
+  if [ "${prefix_flag}" != '--no-prefix' ]; then
     if is-color-terminal; then
       set-ps1-color "${DEFAULT_COLOR}"
     fi
@@ -77,22 +82,17 @@ concatenate-ps1() {
 #############
 
 construct-border() {
-  local character_used_in_border
+  local border_char
   local border
+  local cols
 
-  if is-color-terminal; then
-    character_used_in_border=' '
-  else
-    character_used_in_border='='
-  fi
+  cols=$(( COLUMNS - 3 ))
 
-  border="$( for (( c=1; c<=$COLUMNS; c++ )); do printf "$character_used_in_border"; done )"
+  border_char='═'
 
-  if is-color-terminal; then
-    PS1="${DEFAULT_COLOR}${UNDERLINE}${border}${RESET}"
-  else
-    PS1="${border}"
-  fi
+  border="$( for (( c=0; c<=$cols; c++ )); do printf "$border_char"; done )"
+
+  PS1="╔${border}╗"
 }
 
 is-login-shell() {
@@ -112,20 +112,20 @@ construct-cmd-prompt-header() {
 
   local PROMPT='=>'
 
-  reset-ps1-color
+  concatenate-ps1 --no-prefix '╠ǁ'
 
   # Time
-  concatenate-ps1 "${PS1_TIME_HEADER_IS_DISPLAYED}" "${LIGHT_GRAY}" --no-prefix
+  concatenate-ps1 --no-prefix "${PS1_TIME_HEADER_IS_DISPLAYED}" "${LIGHT_GRAY}"
 
   # Exit Status of Previous Command
 
   if [ -z "$MINIMAL_PROMPT" ]; then
     concatenate-ps1 '\$?: ' "${LIGHT_GRAY}"
-    concatenate-ps1 "${PS1_EXIT_STATUS}" "${ORANGE}" --no-prefix
+    concatenate-ps1 --no-prefix "${PS1_EXIT_STATUS}" "${ORANGE}"
 
     # Number of Background Jobs Running
     concatenate-ps1 'jobs: ' "${LIGHT_GRAY}"
-    concatenate-ps1 "${PS1_JOBS}" "${ORANGE}" --no-prefix
+    concatenate-ps1 --no-prefix "${PS1_JOBS}" "${ORANGE}"
 
     # Print if login shell
     if is-login-shell; then
@@ -135,17 +135,23 @@ construct-cmd-prompt-header() {
 
   # Print Working Directory
   concatenate-ps1 'pwd: ' "${LIGHT_GRAY}"
-  concatenate-ps1 "${PS1_PWD}"  "${PURPLE}" --no-prefix
+  concatenate-ps1 --no-prefix "${PS1_PWD}"  "${PURPLE}"
 
   # NewLine
   newline
   reset-ps1-color
+  concatenate-ps1 --no-prefix '╚═'
 
   # Concatenate Command Prompt
-  concatenate-ps1 " ${PROMPT} " "${ORANGE}" --no-prefix
+  if [ -d .git ]; then
+    branch_name="$( git rev-parse --abbrev-ref HEAD )"
+    concatenate-ps1 --no-prefix " [git] ${branch_name}" "${PURPLE}"
+  fi
+
+  concatenate-ps1 --no-prefix " ${PROMPT} " "${ORANGE}"
 
   # Set Text Color
-  set-ps1-color "${PEACH}${RESET}"
+  set-ps1-color "${RESET}"
 
   unset newline
 }

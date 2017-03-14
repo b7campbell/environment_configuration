@@ -11,8 +11,8 @@ ensure-package-installed() {
   fi
 }
 
-install-vim() {
-  echo "Warning: This OS not yet supported"
+install-vim-on-linux() {
+  sudo apt-get install vim
 }
 
 ##
@@ -35,7 +35,7 @@ install-solarized-terminal-profile() {
     ensure-package-installed 'dconf-cli'
 
     quiet pushd "$TMP_DIR"
-      git clone "${repo_name}" "${author_name}"
+      git clone git@github.com:"${author_name}"/"${repo_name}"
 
       cd "${repo_name}"
       ./install.sh

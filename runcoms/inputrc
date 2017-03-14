@@ -58,7 +58,7 @@ set visible-stats                     on
 set bell-style                        visible
 set comment-begin                     #
 set completion-display-width          -1
-set completion-prefix-display-length  2
+set completion-prefix-display-length  1
 set completion-query-items            75
 set editing-mode                      emacs
 set keymap                            emacs
@@ -95,6 +95,8 @@ $if mode=emacs
   ##
   ## Custom Functions
   ##
+
+  "\C-z": "fg"
 
   # Prepare to quote a word
   "\C-x\"": "\"\"\C-b"

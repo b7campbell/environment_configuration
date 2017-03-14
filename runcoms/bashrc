@@ -30,7 +30,7 @@
   # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
   HISTCONTROL=ignoredups
   HISTFILE="$ENV_PATH/tmp/bash-history"
-  HISTIGNORE='cd *:l:ls:ll:la:gst:cdl *'
+  HISTIGNORE='fg:cd *:l:ls:ll:la:gst:cdl *'
   HISTTIMEFORMAT="[%m/%d] [%T]   "
 
   HISTSIZE=500
@@ -70,4 +70,6 @@
   LESSHISTFILE="-"
   LESSHISTSIZE=0
 # }}}
+
+eval `dircolors $ENV_PATH/tmp/terminal_config/dircolors.256dark`
 

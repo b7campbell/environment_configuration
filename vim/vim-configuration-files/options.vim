@@ -17,7 +17,7 @@ set backspace=start   " allow backspacing over the start of insert
   set backup
   set backupcopy=yes
 
-  set backupdir=$ENV_PATH/tmp/vimbackups
+  set backupdir=$ENV_PATH/tmp/vimbackups "TODO: directory
   set backupdir+=$HOME/my_tools/vimbackups
   set backupdir+=$HOME/tmp/.backups
   let &backupskip .= ',' . expand('$HOME') . '/tmp/*'. ',/var/*'
@@ -394,8 +394,14 @@ augroup tabstop_config
 augroup END
 
 augroup scala
-  autocmd BufReadPre,BufnewFile *.scala             set filetype=scala
+  autocmd!
+  autocmd BufReadPre,BufnewFile *.scala             setlocal filetype=scala
   let g:scala_scaladoc_indent = 1
+augroup END
+
+augroup coq
+  autocmd!
+  autocmd BufReadPre,BufnewFile *.v                 set filetype=coq
 augroup END
 
 augroup bmd

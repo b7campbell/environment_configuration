@@ -14,6 +14,10 @@
   alias cpy='cp -n'
 # }}}
 
+# utilities {{{
+  alias            rm='rm -P'
+# }}}
+
 # development tools {{{
   alias g++='g++-5'
 # }}}

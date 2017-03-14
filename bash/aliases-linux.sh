@@ -16,7 +16,7 @@ fi
 # }}}
 
 # utitilies {{{
-  alias ram='free -m -l -t'
+  alias       ram='free -m -l -t'
 
   alias      halt='sudo /sbin/halt'
   alias    reboot='sudo /sbin/reboot'

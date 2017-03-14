@@ -77,6 +77,7 @@ onoremap il] :<c-u>normal! F]vi]<cr>
 
 nnoremap <leader>A  :call ShortOptionToggle('cursorline') <bar> call ShortOptionToggle('cursorcolumn')<cr>
 nnoremap <leader>B  :call ToggleBackgroundColor()<cr>
+nnoremap <leader>C  :call CoqStart()<CR>
 nnoremap <leader>HO :execute ":noh"<cr>
 nnoremap <leader>HI :call ShortOptionToggle('incsearch')<cr>
 nnoremap <leader>L  :call ShortOptionToggle('list')<cr>
@@ -107,7 +108,7 @@ cmap     <script> <C-T>              <SID>transposition<SID>transpose
 " <C-x><C-a>    get builtin C-a
 " ex_mode/history-scrollers.vim
 cnoremap <C-p> <Up>
-cnoremap <C-n> <Down>
+cnoremap <C-o> <Down>
 
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
@@ -192,4 +193,5 @@ function! MapHiraganaCharacters()
 endfunction
 
 autocmd FileType txt,jp call MapHiraganaCharacters()
+
 

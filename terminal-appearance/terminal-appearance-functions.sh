@@ -15,7 +15,7 @@ set-command-prompt() {
   source-helper-script "cleanup.sh"
 }
 
-setup-terminal() {
+setup-prompt() {
 
   source-helper-script() {
     . "$ENV_PATH/terminal-appearance/helpers/${@}"

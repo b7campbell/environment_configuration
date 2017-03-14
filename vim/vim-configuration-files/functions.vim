@@ -4,15 +4,15 @@
 "===========================================
 
 function! ConfigureiTermVim(...)
-  if 'iTerm.app' == $TERM_PROGRAM
+  " if 'iTerm.app' == $TERM_PROGRAM
     for cmd in a:000
       execute 'call ' . cmd
     endfor
-  endif
+  " endif
 endfunction
 
 function! ConfigureBaseVim(...)
-  if 'iTerm.app' != $TERM_PROGRAM
+  if 'iTerm.app' == $TERM_PROGRAM
     for cmd in a:000
       execute 'call ' . cmd
     endfor
@@ -101,3 +101,17 @@ endfunction
 function! ToggleBackgroundColor()
   call s:long_option_toggle('background', &background, 'dark', 'light')
 endfunction
+
+function! CoqStart()
+
+  set syntax=coq
+  set filetype=coq
+
+  nnoremap <leader>I  :CoqNext<CR>
+  nnoremap <leader>U  :CoqUndo<CR>
+  nnoremap <leader>Q  :CoqKill<CR>
+  nnoremap <leader>T  :CoqToCursor<CR>
+
+  execute "CoqLaunch"
+endfunction
+

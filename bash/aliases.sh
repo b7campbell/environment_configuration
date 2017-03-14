@@ -15,6 +15,7 @@
 # git aliases {{{
   alias gbr='git branch'
   alias gst='git status'
+  alias gco='git checkout'
 
   alias  gs="git status"
   alias  ga="git add"
@@ -56,7 +57,6 @@
 # }}}
 
 # utilities {{{
-  alias            rm='rm -P'
   alias           mov='mv -i'
   alias           del='rm -i'
   alias          diff='diff -W $(( $(tput cols) - 2 ))'
