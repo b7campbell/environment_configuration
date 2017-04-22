@@ -1,11 +1,21 @@
 #!/bin/bash -e
 
 ##
-## add OS agnostic aliases
+## Personal aliases
 ##
 
+# command colors {{{
+if [ -x /usr/bin/dircolors ] ; then
+  alias ls='ls --color=auto'
+
+  alias  grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
+fi
+# }}}
+
 # ls aliases {{{
-  alias  l='ls -C'             # force multiline output
+  alias  l='ls -C'            # force multiline output
   alias la='ls -A'            # show hidden and regular files
   alias ll='ls -l'            # long format
   alias ll='ls -alF'
@@ -29,6 +39,9 @@
   alias   vi='vim'
   alias  svi='sudo vi'
   alias svim='sudo vi'
+
+  alias  cim='vim'
+  alias  bim='bim'
 # }}}
 
 # general conveniences {{{
@@ -42,7 +55,6 @@
   alias   ff='find . -name $1'
 
   alias bman='bash-man'
-  alias script='echo you disabled this command'
 
   alias         todos="ag --nogroup '(TODO|FIX(ME)?)[: ]'"
   alias cat-nocomment='egrep -v "^([[:space:]]*#)"'
@@ -57,10 +69,15 @@
 # }}}
 
 # utilities {{{
-  alias           mov='mv -i'
-  alias           del='rm -i'
+  alias           mov='mv --interactive --verbose --no-clobber'
+  alias           del='rm --interactive=once --preserve-root'
+  alias           cpy='cp --no-clobber'
   alias          diff='diff -W $(( $(tput cols) - 2 ))'
   alias          diff='diff -W $(( $(tput cols) - 2 ))'
+
+  alias          chwn='chown --preserve-root'
+  alias          chmd='chmod --preserve-root'
+  alias          chgr='chgrp --preserve-root'
 
   alias      disk-use='du -ch 2>/dev/null | tail -1'
   alias partition-use='df -hlT --exclude-type=tmpfs --exclude-type=devtmpfs'
@@ -73,13 +90,38 @@
 
 # avoid 'command not found' {{{
   alias cd..='cd ..'
-
-  alias cim='vim'
-  alias bim='bim'
+  alias sl='l'
 # }}}
 
 # development tools {{{
-  alias gcc='gcc -Wall'
+  alias gcc='gcc -Wall -Wpedantic -Werror'
+# }}}
+
+
+# general conveniences {{{
+  alias            apt='sudo apt-get'
+  alias        apt-get='sudo apt-get'
+# }}}
+
+# utitilies {{{
+  alias       ram='free -m -l -t'
+
+  alias      halt='sudo /sbin/halt'
+  alias    reboot='sudo /sbin/reboot'
+  alias  poweroff='sudo /sbin/poweroff'
+  alias  shutdown='sudo /sbin/shutdown'
+# }}}
+
+# defensive aliases {{{
+
+  alias    rm="echo 'ECU: use >del< instead'"
+  alias    mv="echo 'ECU: use >mov< instead'"
+  alias    cp="echo 'ECU: use >cpy< instead'"
+  alias chown="echo 'ECU: use >chwn< instead'"
+  alias chmod="echo 'ECU: use >chmd< instead'"
+  alias chgrp="echo 'ECU: use >chgr< instead'"
+
+  alias script='echo you disabled this command'
 # }}}
 
 

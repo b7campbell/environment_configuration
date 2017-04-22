@@ -27,3 +27,8 @@ bash-man() {
   fi
 }
 
+cdl() {
+  cd "$@"
+  ls --color=auto
+}
+
