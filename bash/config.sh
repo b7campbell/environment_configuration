@@ -4,6 +4,8 @@
 ## Configure shell environment
 ##
 
+eval `dircolors $ENV_PATH/tmp/dircolors.256dark`
+
 # see lesspipe(1)
 if [ -x /usr/bin/lesspipe ]; then
   eval "$(SHELL=/bin/sh lesspipe)"

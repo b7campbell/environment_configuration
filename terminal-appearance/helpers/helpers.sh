@@ -144,7 +144,8 @@ construct-cmd-prompt-header() {
 
   # Concatenate Command Prompt
   if [ -d .git ]; then
-    branch_name="$( git rev-parse --abbrev-ref HEAD )"
+     
+    branch_name='$( parse_git_branch)'
     concatenate-ps1 --no-prefix " [git] ${branch_name}" "${PURPLE}"
   fi
 

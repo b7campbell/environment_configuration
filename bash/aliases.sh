@@ -69,15 +69,15 @@ fi
 # }}}
 
 # utilities {{{
-  alias           mov='mv --interactive --verbose --no-clobber'
-  alias           del='rm --interactive=once --preserve-root'
-  alias           cpy='cp --no-clobber'
-  alias          diff='diff -W $(( $(tput cols) - 2 ))'
-  alias          diff='diff -W $(( $(tput cols) - 2 ))'
+  alias           mov='/bin/mv --interactive --verbose --no-clobber'
+  alias           del='/bin/rm --interactive=once --preserve-root'
+  alias           cpy='/bin/cp --no-clobber'
+  alias          diff='/usr/bin/diff -W $(( $(tput cols) - 2 ))'
+  alias          diff='/usr/bin/diff -W $(( $(tput cols) - 2 ))'
 
-  alias          chwn='chown --preserve-root'
-  alias          chmd='chmod --preserve-root'
-  alias          chgr='chgrp --preserve-root'
+  alias          chwn='/bin/chown --preserve-root'
+  alias          chmd='/bin/chmod --preserve-root'
+  alias          chgr='/bin/chgrp --preserve-root'
 
   alias      disk-use='du -ch 2>/dev/null | tail -1'
   alias partition-use='df -hlT --exclude-type=tmpfs --exclude-type=devtmpfs'

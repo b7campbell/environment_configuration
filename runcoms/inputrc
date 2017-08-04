@@ -86,24 +86,25 @@ $if mode=emacs
 
   "\eo":      non-incremental-forward-search-history
 
-  "\C-x\C-d": dump-macros
-
+  "\C-xd":    dump-macros
   "\C-u":     "\C-a\C-k" kill-whole-line
-
-  Esc-.:      yank-last-arg
+  "\e.":      yank-last-arg
 
   ##
   ## Custom Functions
   ##
 
-  "\C-z": "fg"
+  # reenter application
+  "\C-xz": 'fg\015'
+
+  "\C-xs": '\C-a "$(\C-e)"\C-a' subshell-surround
 
   # Prepare to quote a word
-  "\C-x\"": "\"\"\C-b"
-  "\C-x\'": "\'\'\C-b"
+  "\C-x\"": "\"\"\C-b" double-quote-word
+  "\C-x\'": "\'\'\C-b" single-quote-word
 
   # Quote the current or previous word
-  "\C-xq": "\eb\"\ef\""
+  "\C-xq": "\eb\"\ef\"" quote-previous-word
 
   # edit the path
   "\C-xp": "PATH=${PATH}\e\C-e\C-a\ef\C-f"

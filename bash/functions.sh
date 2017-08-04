@@ -32,3 +32,11 @@ cdl() {
   ls --color=auto
 }
 
+print-readline-tip() {
+  local line_num="$( ag -n '"' ~/.inputrc  | cut -f1 -d: | sort -R | head -1 )"
+  figlet -f straight.flf 'Terminal Tip:'
+  printf "\t\t\t"
+  sed "${line_num}q;d" ~/.inputrc | sed 's/:\s*/ [maps to] /'
+  printf "\n"
+}
+

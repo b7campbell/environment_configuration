@@ -48,9 +48,6 @@ call EnablePlugin('vim-commentary')  " https://github.com/tpope/vim-commentary
 call EnablePlugin('gruvbox')
 call SourcePluginConfigFile( 'gruvbox' )
 
-call EnablePlugin('vimbufsync')
-call EnablePlugin('coquille')
-
 filetype plugin indent on
 
 " }}}
