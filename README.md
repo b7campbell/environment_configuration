@@ -1,4 +1,4 @@
-asdf# environment\_configuration
+asdasdfasdff# environment\_configuration
 
 This repository collects a wide variety of customizations that I use to customize my terminal emulators. It also includes a number of setup scripts designed to bootstrap either a Mac- or Linux- type operation system as it is somewhat tedious to go through the entire process each time I end up using a different machine.
 
