@@ -52,6 +52,7 @@ fi
 
   alias tree="find . -print | sed -e 's;[^/]*/;|__;g;s;__|; |;g'"
 
+  # TODO: unless ag present
   alias   ff='find . -name $1'
 
   alias bman='bash-man'
@@ -69,18 +70,20 @@ fi
 # }}}
 
 # utilities {{{
-  alias           mov='mv --interactive --verbose --no-clobber'
-  alias           del='rm --interactive=once --preserve-root'
-  alias           cpy='cp --no-clobber'
+#TODO: make sustainable, I know
+
+  alias           mov='gmv --interactive --verbose --no-clobber'
+  alias           del='grm --interactive=once --preserve-root'
+  alias           cpy='gcp --no-clobber'
   alias          diff='diff -W $(( $(tput cols) - 2 ))'
   alias          diff='diff -W $(( $(tput cols) - 2 ))'
 
-  alias          chwn='chown --preserve-root'
-  alias          chmd='chmod --preserve-root'
-  alias          chgr='chgrp --preserve-root'
+  alias          chwn='gchown --preserve-root'
+  alias          chmd='gchmod --preserve-root'
+  alias          chgr='gchgrp --preserve-root'
 
-  alias      disk-use='du -ch 2>/dev/null | tail -1'
-  alias partition-use='df -hlT --exclude-type=tmpfs --exclude-type=devtmpfs'
+  alias      disk-use='gdu -ch 2>/dev/null | tail -1'
+  alias partition-use='gdf -hlT --exclude-type=tmpfs --exclude-type=devtmpfs'
 
   alias         flush='sync'
   alias           cpu='top -o cpu'

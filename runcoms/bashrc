@@ -8,8 +8,7 @@
 
   LOCAL_ENV_PATH="$ENV_PATH/bash"
 
-  . "$LOCAL_ENV_PATH/shopt.sh"
-  . "$LOCAL_ENV_PATH/set.sh"
+  . "$LOCAL_ENV_PATH/config.sh"
 
   FCEDIT=vi
   FIGNORE=.o:~:.swp
@@ -71,5 +70,10 @@
   LESSHISTSIZE=0
 # }}}
 
-eval `dircolors $ENV_PATH/tmp/terminal_config/dircolors.256dark`
+# TODO: not in mac, move https://github.com/gibbling/dircolors into repo
+#eval `dircolors $ENV_PATH/tmp/terminal_config/dircolors.256dark`
+eval $(gdircolors ~/.dircolors/dircolors.256dark)
+
+# TODO: source local bashrc
+
 

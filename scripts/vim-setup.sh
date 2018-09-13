@@ -2,16 +2,6 @@
 
 . "helpers/helpers.sh"
 
-install-vim() {
-  if [ "$OS_TYPE" = 'darwin' ]; then
-    install-vim-on-mac
-  elif [ "$OS_TYPE" = 'linux' ]; then
-    install-vim-on-linux
-  else
-    echo-stderr "$SCRIPT_NAME: Error: script does not support $OS_TYPE"
-  fi
-}
-
 ensure-vim-directories-exist() {
   ensure-directory-exists "$HOME/.vim/autoload"
   ensure-directory-exists "$HOME/.vim/bundle"
@@ -59,7 +49,6 @@ check-plugins-in-manifest() {
 ## Begin Execution
 ##
 
-install-vim
 ensure-rc-symlink-exists      "vimrc" "vim"
 ensure-vim-directories-exist
 check-pathogen

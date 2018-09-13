@@ -4,14 +4,15 @@
 ## configure.sh: bootstrap environment_configuration
 ##
 
-# Configure only if bash is being run interactively
-if [ -z "$PS1" ]; then
-  return
-fi
-
-if [ "bash" != "${0}" -a "/bin/bash" != "${0}" ]; then
+if [ "bash" != "${0}" -a "/bin/bash" != "${0}" -a "-bash" != "${0}" ]; then
   echo "Denied: Script cannot be invoked on the command line" 2>&1
   exit 1
+fi
+
+# Configure only if bash is being run interactively
+if [ -z "$PS1" ]; then
+  # only ever run inside a script
+  return
 fi
 
 export ENV_PATH="$( dirname ${BASH_SOURCE[0]} )"

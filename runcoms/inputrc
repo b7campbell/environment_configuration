@@ -1,7 +1,7 @@
 
 # This file controls the behaviour of line input editing for
-# programs that use the GNU Readline library.  Existing
-# programs include FTP, Bash, and GDB.
+# programs that use the GNU Readline library. Not all options
+# are compatible with BSD bash (i.e. shell on Darwin type OSes).
 #
 # You can re-read the inputrc file with C-x C-r.
 # Lines beginning with '#' are comments.

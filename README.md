@@ -17,6 +17,8 @@ cd ~
 git clone git@github.com:b7campbell/environment_configuration
 ```
 
+If on a mac, will need to add the sourcing of the .bashrc.
+
 ### readline setup
 
 Add customizations for readline. Because most systems do not have an `~/.inputrc` by default, the script creates a symlink.
@@ -47,7 +49,7 @@ cd environment_configuration/scripts
 ### activate the repo
 
 ```sh
-echo '. ~/environment_configuration/setup.sh' >> ~/.bashrc
+echo '. ~/environment_configuration/configure.sh' >> ~/.bashrc
 . ~/.bashrc
 ```
 
@@ -62,4 +64,7 @@ This script is responsible for minimal ssh configuration, namely the addition of
 ./envrionment_configuration/scripts/ssh-config-setup.sh
 ```
 
-
+TODO: add null checks on runcoms, if null, something went wrong in setting up symlink, and delete
+https://github.com/powerline/fonts
+add instructions about which font on iterm to pick and which profile setting to change for meta
+aliases in case of using homebrew version
